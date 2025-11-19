@@ -1,0 +1,35 @@
+# Editor files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+
+# Node modules (if you add npm later)
+node_modules/
+
+# Package files
+*.zip
+*.crx
+*.pem
+
+# Test files
+test/
+tests/
+

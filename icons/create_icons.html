@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator for Resume AutoFill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #667eea; }
+        .icon-preview {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .icon-item {
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Resume AutoFill - Icon Generator</h1>
+        <p>Generate extension icons for Chrome:</p>
+        
+        <div class="icon-preview">
+            <div class="icon-item">
+                <h3>16x16</h3>
+                <canvas id="canvas16" width="16" height="16"></canvas>
+                <br>
+                <button onclick="downloadIcon('canvas16', 'icon16.png')">Download</button>
+            </div>
+            <div class="icon-item">
+                <h3>48x48</h3>
+                <canvas id="canvas48" width="48" height="48"></canvas>
+                <br>
+                <button onclick="downloadIcon('canvas48', 'icon48.png')">Download</button>
+            </div>
+            <div class="icon-item">
+                <h3>128x128</h3>
+                <canvas id="canvas128" width="128" height="128"></canvas>
+                <br>
+                <button onclick="downloadIcon('canvas128', 'icon128.png')">Download</button>
+            </div>
+        </div>
+
+        <button onclick="downloadAll()" style="width: 100%; font-size: 18px;">Download All Icons</button>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click "Download All Icons" or download each icon individually</li>
+                <li>Save the downloaded icons to the <code>icons/</code> directory</li>
+                <li>Make sure the files are named: <code>icon16.png</code>, <code>icon48.png</code>, <code>icon128.png</code></li>
+                <li>Load the extension in Chrome at <code>chrome://extensions/</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            // Fill background
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw document icon
+            ctx.fillStyle = 'white';
+            const padding = size * 0.2;
+            const docWidth = size * 0.6;
+            const docHeight = size * 0.65;
+            const docX = padding;
+            const docY = padding;
+            
+            // Document rectangle
+            ctx.fillRect(docX, docY, docWidth, docHeight);
+            
+            // Lines on document
+            ctx.fillStyle = '#667eea';
+            const lineWidth = docWidth * 0.7;
+            const lineHeight = size * 0.06;
+            const lineX = docX + docWidth * 0.15;
+            const lineSpacing = size * 0.15;
+            
+            for (let i = 0; i < 3; i++) {
+                ctx.fillRect(lineX, docY + lineSpacing * (i + 1), lineWidth, lineHeight);
+            }
+        }
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function downloadAll() {
+            setTimeout(() => downloadIcon('canvas16', 'icon16.png'), 100);
+            setTimeout(() => downloadIcon('canvas48', 'icon48.png'), 300);
+            setTimeout(() => downloadIcon('canvas128', 'icon128.png'), 500);
+        }
+
+        // Draw all icons on load
+        window.onload = () => {
+            drawIcon('canvas16', 16);
+            drawIcon('canvas48', 48);
+            drawIcon('canvas128', 128);
+        };
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume AutoFill</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Resume AutoFill</h1>
+    </header>
+
+    <!-- Main View -->
+    <div id="mainView" class="view">
+      <div class="status-section">
+        <div id="resumeStatus" class="status-card">
+          <span class="status-icon"></span>
+          <div class="status-info">
+            <h3>Resume Status</h3>
+            <p id="resumeStatusText">No resume added</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button id="uploadPdfBtn" class="btn btn-primary">
+          Upload Resume PDF
+        </button>
+        <input type="file" id="pdfFileInput" accept=".pdf" style="display: none;">
+        <button id="addResumeBtn" class="btn btn-secondary">
+          Enter Manually
+        </button>
+        <button id="editResumeBtn" class="btn btn-secondary" style="display: none;">
+          Edit Resume
+        </button>
+        <button id="genericDetailsBtn" class="btn btn-secondary">
+          Generic Details
+        </button>
+        <button id="autoFillBtn" class="btn btn-success" style="display: none;">
+          Auto Fill Page
+        </button>
+      </div>
+
+      <div class="info-section">
+        <p class="info-text">Upload your resume PDF for instant auto-fill, or enter details manually</p>
+      </div>
+    </div>
+
+    <!-- Resume Form View -->
+    <div id="resumeFormView" class="view" style="display: none;">
+      <button id="backFromResume" class="back-btn">← Back</button>
+      <h2>Resume Details</h2>
+
+      <form id="resumeForm">
+        <div class="form-section">
+          <h3>Personal Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="middleName">Middle Name</label>
+              <input type="text" id="middleName">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label for="address">Street Address</label>
+            <input type="text" id="address" placeholder="123 Main St, Apt 4B">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city">
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" id="state" placeholder="CA">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="zipCode">ZIP Code</label>
+              <input type="text" id="zipCode" placeholder="12345">
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" id="country" placeholder="United States">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Professional Information</h3>
+          <div class="form-group">
+            <label for="linkedin">LinkedIn Profile</label>
+            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+          </div>
+          <div class="form-group">
+            <label for="github">GitHub Profile</label>
+            <input type="url" id="github" placeholder="https://github.com/yourusername">
+          </div>
+          <div class="form-group">
+            <label for="portfolio">Portfolio Website</label>
+            <input type="url" id="portfolio" placeholder="https://yourportfolio.com">
+          </div>
+          <div class="form-group">
+            <label for="currentCompany">Current Company</label>
+            <input type="text" id="currentCompany" placeholder="Acme Corporation">
+          </div>
+          <div class="form-group">
+            <label for="currentTitle">Current Job Title</label>
+            <input type="text" id="currentTitle" placeholder="Senior Software Engineer">
+          </div>
+          <div class="form-group">
+            <label for="yearsOfExperience">Years of Experience</label>
+            <input type="number" id="yearsOfExperience" min="0" placeholder="5">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Education</h3>
+          <div class="form-group">
+            <label for="university">University/College</label>
+            <input type="text" id="university" placeholder="Stanford University">
+          </div>
+          <div class="form-group">
+            <label for="degree">Degree</label>
+            <input type="text" id="degree" placeholder="Bachelor of Science">
+          </div>
+          <div class="form-group">
+            <label for="major">Major/Field of Study</label>
+            <input type="text" id="major" placeholder="Computer Science">
+          </div>
+          <div class="form-group">
+            <label for="graduationYear">Graduation Year</label>
+            <input type="number" id="graduationYear" min="1950" max="2050" placeholder="2020">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Additional Information</h3>
+          <div class="form-group">
+            <label for="skills">Skills (comma-separated)</label>
+            <textarea id="skills" rows="3" placeholder="JavaScript, Python, React, Node.js, AWS, Docker"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="summary">Professional Summary</label>
+            <textarea id="summary" rows="4"
+              placeholder="Brief professional summary highlighting your key achievements and expertise..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Resume</button>
+          <button type="button" id="cancelResume" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Generic Details Form View -->
+    <div id="genericDetailsView" class="view" style="display: none;">
+      <button id="backFromGeneric" class="back-btn">← Back</button>
+      <h2>Generic Details</h2>
+
+      <form id="genericForm">
+        <div class="form-section">
+          <h3>Demographic Information</h3>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="">Prefer not to say</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="non-binary">Non-binary</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="race">Race/Ethnicity</label>
+            <select id="race">
+              <option value="">Prefer not to say</option>
+              <option value="asian">Asian</option>
+              <option value="black">Black or African American</option>
+              <option value="hispanic">Hispanic or Latino</option>
+              <option value="native">Native American or Alaska Native</option>
+              <option value="pacific">Native Hawaiian or Pacific Islander</option>
+              <option value="white">White</option>
+              <option value="two-or-more">Two or More Races</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="veteran">Veteran Status</label>
+            <select id="veteran">
+              <option value="">Prefer not to say</option>
+              <option value="no">I am not a veteran</option>
+              <option value="yes">I am a veteran</option>
+              <option value="protected">I am a protected veteran</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="disability">Disability Status</label>
+            <select id="disability">
+              <option value="">Prefer not to say</option>
+              <option value="no">No disability</option>
+              <option value="yes">I have a disability</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Work Authorization</h3>
+          <div class="form-group">
+            <label for="workAuthorization">Work Authorization Status</label>
+            <select id="workAuthorization">
+              <option value="">Select status</option>
+              <option value="citizen">U.S. Citizen</option>
+              <option value="permanent-resident">Permanent Resident</option>
+              <option value="work-visa">Work Visa Holder</option>
+              <option value="need-sponsorship">Need Sponsorship</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="securityClearance">Security Clearance</label>
+            <select id="securityClearance">
+              <option value="">None</option>
+              <option value="confidential">Confidential</option>
+              <option value="secret">Secret</option>
+              <option value="top-secret">Top Secret</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Compensation & Preferences</h3>
+          <div class="form-group">
+            <label for="currentSalary">Current Salary (Annual)</label>
+            <input type="text" id="currentSalary" placeholder="$100,000">
+          </div>
+          <div class="form-group">
+            <label for="desiredSalary">Expected Salary (Annual)</label>
+            <input type="text" id="desiredSalary" placeholder="$120,000">
+          </div>
+          <div class="form-group">
+            <label for="availableStartDate">Available Start Date</label>
+            <input type="date" id="availableStartDate">
+          </div>
+          <div class="form-group">
+            <label for="workPreference">Work Preference</label>
+            <select id="workPreference">
+              <option value="">Select preference</option>
+              <option value="remote">Remote</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="in-office">In-Office</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="preferredLocation">Preferred Work Location</label>
+            <input type="text" id="preferredLocation" placeholder="San Francisco, CA">
+          </div>
+          <div class="form-group">
+            <label for="willingToRelocate">Willing to Relocate</label>
+            <select id="willingToRelocate">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="maybe">Maybe</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Details</button>
+          <button type="button" id="cancelGeneric" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="pdf-parser.js"></script>
+  <script src="popup.js"></script>
+</body>
+
+</html>

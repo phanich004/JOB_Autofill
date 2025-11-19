@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demographic Fields Test - Job Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .form-section h2 {
+            font-size: 20px;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label.main-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #212529;
+            font-size: 15px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .radio-option:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .note {
+            background: #e7f3ff;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .note p {
+            color: #0066cc;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 Demographic Information Test</h1>
+        <p class="subtitle">Test demographic field auto-fill with radio buttons</p>
+
+        <div class="note">
+            <p><strong>💡 Tip:</strong> This form tests the demographic fields (veteran status, race/ethnicity, gender)
+                with radio buttons. Fill in your Generic Details in the extension, then click "Auto Fill Page" to test!
+            </p>
+        </div>
+
+        <form id="demographicForm">
+            <!-- Veteran Status -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="main-label">Veteran Status</label>
+
+                    <div class="radio-option">
+                        <input type="radio" id="veteran-protected" name="veteran" value="protected">
+                        <label for="veteran-protected">I identify as one or more of the classifications of protected
+                            veteran listed above</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="veteran-no" name="veteran" value="no">
+                        <label for="veteran-no">I am not a protected veteran</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="veteran-decline" name="veteran" value="">
+                        <label for="veteran-decline">I decline to self-identify for protected veteran status</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Race/Ethnicity -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="main-label">Race/Ethnicity</label>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-hispanic" name="race" value="hispanic">
+                        <label for="race-hispanic">Hispanic or Latino</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-white" name="race" value="white">
+                        <label for="race-white">White (Not Hispanic or Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-black" name="race" value="black">
+                        <label for="race-black">Black or African American (Not Hispanic or Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-pacific" name="race" value="pacific">
+                        <label for="race-pacific">Native Hawaiian or Other Pacific Islander (Not Hispanic or
+                            Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-asian" name="race" value="asian">
+                        <label for="race-asian">Asian (Not Hispanic or Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-native" name="race" value="native">
+                        <label for="race-native">American Indian or Alaska Native (Not Hispanic or Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-two" name="race" value="two-or-more">
+                        <label for="race-two">Two or More Races (Not Hispanic or Latino)</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="race-decline" name="race" value="">
+                        <label for="race-decline">Decline to self-identify</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="main-label">Gender</label>
+
+                    <div class="radio-option">
+                        <input type="radio" id="gender-male" name="gender" value="male">
+                        <label for="gender-male">Male</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="gender-female" name="gender" value="female">
+                        <label for="gender-female">Female</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="gender-decline" name="gender" value="">
+                        <label for="gender-decline">Decline to self-identify</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('demographicForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            console.log('Form data:', data);
+            alert('✅ Form submitted successfully!\n\nData: ' + JSON.stringify(data, null, 2));
+        });
+    </script>
+</body>
+
+</html>
